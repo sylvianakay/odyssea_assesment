@@ -25,7 +25,7 @@ public class AuthService {
 	public void register(RegisterRequest request) {
 		String normalizedEmail = request.getEmail().trim().toLowerCase();
 		if (userRepository.findByEmail(normalizedEmail).isPresent()) {
-			throw new IllegalArgumentException("Email is already in use.");
+			throw new EmailAlreadyExistsException("Email is already in use.");
 		}
 
 		String hashedPassword = passwordEncoder.encode(request.getPassword());

@@ -1,6 +1,7 @@
 package com.example.demo.auth;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,6 +39,15 @@ public class JwtService {
 
 	public String extractSubject(String token) {
 		return extractAllClaims(token).getSubject();
+	}
+
+	public boolean isTokenValid(String token) {
+		try {
+			extractAllClaims(token);
+			return true;
+		} catch (JwtException | IllegalArgumentException ex) {
+			return false;
+		}
 	}
 
 	private Claims extractAllClaims(String token) {
