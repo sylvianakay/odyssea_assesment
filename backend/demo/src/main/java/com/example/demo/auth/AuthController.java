@@ -1,6 +1,7 @@
 package com.example.demo.auth;
 
 import com.example.demo.auth.dto.LoginRequest;
+import com.example.demo.auth.dto.AuthResponse;
 import com.example.demo.auth.dto.RegisterRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -29,8 +30,8 @@ public class AuthController {
 
 	@PostMapping("/login")
 	@ResponseStatus(HttpStatus.OK)
-	public String login(@Valid @RequestBody LoginRequest request) {
-		authService.login(request);
-		return "login ok";
+	public AuthResponse login(@Valid @RequestBody LoginRequest request) {
+		String token = authService.login(request);
+		return new AuthResponse(token);
 	}
 }

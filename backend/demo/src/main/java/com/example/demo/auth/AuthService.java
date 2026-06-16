@@ -13,10 +13,12 @@ public class AuthService {
 
 	private final UserRepository userRepository;
 	private final PasswordEncoder passwordEncoder;
+	private final JwtService jwtService;
 
-	public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+	public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
 		this.userRepository = userRepository;
 		this.passwordEncoder = passwordEncoder;
+		this.jwtService = jwtService;
 	}
 
 	@Transactional
@@ -32,7 +34,7 @@ public class AuthService {
 	}
 
 	@Transactional(readOnly = true)
-	public void login(LoginRequest request) {
+	public String login(LoginRequest request) {
 		String normalizedEmail = request.getEmail().trim().toLowerCase();
 		User user = userRepository.findByEmail(normalizedEmail)
 				.orElseThrow(() -> new InvalidCredentialsException("Invalid email or password."));
@@ -41,5 +43,7 @@ public class AuthService {
 		if (!passwordMatches) {
 			throw new InvalidCredentialsException("Invalid email or password.");
 		}
+
+		return jwtService.generateToken(user.getEmail());
 	}
 }
