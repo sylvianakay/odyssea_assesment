@@ -1,6 +1,7 @@
 package com.example.demo.auth.dto;
 
 import com.example.demo.auth.AuthValidationConstants;
+import com.example.demo.common.SchemaConstants;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -9,7 +10,7 @@ public class RegisterRequest {
 
 	@Email
 	@NotBlank
-	@Size(max = AuthValidationConstants.EMAIL_MAX_LENGTH)
+	@Size(max = SchemaConstants.EMAIL_MAX_LENGTH)
 	private String email;
 
 	@NotBlank

@@ -1,5 +1,6 @@
 package com.example.demo.user;
 
+import com.example.demo.common.SchemaConstants;
 import com.example.demo.skill.Skill;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,14 +25,13 @@ import java.util.Set;
 )
 public class User {
 
-	private static final int EMAIL_MAX_LENGTH = 120;
 	private static final int PASSWORD_HASH_MAX_LENGTH = 255;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, length = EMAIL_MAX_LENGTH)
+	@Column(nullable = false, length = SchemaConstants.EMAIL_MAX_LENGTH)
 	private String email;
 
 	@Column(name = "password_hash", nullable = false, length = PASSWORD_HASH_MAX_LENGTH)
