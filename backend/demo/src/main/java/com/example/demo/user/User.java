@@ -1,12 +1,19 @@
 package com.example.demo.user;
 
+import com.example.demo.skill.Skill;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(
@@ -26,6 +33,14 @@ public class User {
 
 	@Column(name = "password_hash", nullable = false, length = 255)
 	private String passwordHash;
+
+	@ManyToMany
+	@JoinTable(
+			name = "user_skills",
+			joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "skill_id")
+	)
+	private Set<Skill> skills = new HashSet<>();
 
 	protected User() {
 
@@ -54,5 +69,9 @@ public class User {
 
 	public void setPasswordHash(String passwordHash) {
 		this.passwordHash = passwordHash;
+	}
+
+	public Set<Skill> getSkills() {
+		return skills;
 	}
 }
