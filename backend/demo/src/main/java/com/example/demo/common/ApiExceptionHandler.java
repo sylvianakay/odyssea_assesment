@@ -1,5 +1,6 @@
 package com.example.demo.common;
 
+import com.example.demo.auth.InvalidCredentialsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,6 +26,14 @@ public class ApiExceptionHandler {
 	public Map<String, String> handleValidationException(MethodArgumentNotValidException ex) {
 		Map<String, String> error = new HashMap<>();
 		error.put("message", "Invalid request body.");
+		return error;
+	}
+
+	@ExceptionHandler(InvalidCredentialsException.class)
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	public Map<String, String> handleInvalidCredentialsException(InvalidCredentialsException ex) {
+		Map<String, String> error = new HashMap<>();
+		error.put("message", ex.getMessage());
 		return error;
 	}
 }

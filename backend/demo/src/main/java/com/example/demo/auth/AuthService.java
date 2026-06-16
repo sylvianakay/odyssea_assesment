@@ -1,5 +1,6 @@
 package com.example.demo.auth;
 
+import com.example.demo.auth.dto.LoginRequest;
 import com.example.demo.auth.dto.RegisterRequest;
 import com.example.demo.user.User;
 import com.example.demo.user.UserRepository;
@@ -28,5 +29,17 @@ public class AuthService {
 		String hashedPassword = passwordEncoder.encode(request.getPassword());
 		User user = new User(normalizedEmail, hashedPassword);
 		userRepository.save(user);
+	}
+
+	@Transactional(readOnly = true)
+	public void login(LoginRequest request) {
+		String normalizedEmail = request.getEmail().trim().toLowerCase();
+		User user = userRepository.findByEmail(normalizedEmail)
+				.orElseThrow(() -> new InvalidCredentialsException("Invalid email or password."));
+
+		boolean passwordMatches = passwordEncoder.matches(request.getPassword(), user.getPasswordHash());
+		if (!passwordMatches) {
+			throw new InvalidCredentialsException("Invalid email or password.");
+		}
 	}
 }
