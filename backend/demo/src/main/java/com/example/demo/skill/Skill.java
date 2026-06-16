@@ -1,5 +1,6 @@
 package com.example.demo.skill;
 
+import com.example.demo.job.Job;
 import com.example.demo.user.User;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -32,6 +33,9 @@ public class Skill {
 	@ManyToMany(mappedBy = "skills")
 	private Set<User> users = new HashSet<>();
 
+	@ManyToMany(mappedBy = "requiredSkills")
+	private Set<Job> jobs = new HashSet<>();
+
 	protected Skill() {
 
 	}
@@ -54,5 +58,9 @@ public class Skill {
 
 	public Set<User> getUsers() {
 		return users;
+	}
+
+	public Set<Job> getJobs() {
+		return jobs;
 	}
 }

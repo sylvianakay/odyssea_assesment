@@ -1,6 +1,6 @@
 # Job Skill Matcher
 
-full-stack web app that matches users with jobs based on overlapping skills.
+A full-stack app that matches users with jobs based on shared skills.
 
 ## Tech Stack
 
@@ -10,9 +10,9 @@ full-stack web app that matches users with jobs based on overlapping skills.
 
 ## Project Structure
 
-- `backend/demo`: Spring Boot API
-- `frontend`: React app
-- `docker-compose.yml`: PostgreSQL container setup
+- `backend/demo` - Spring Boot API
+- `frontend` - React app
+- `docker-compose.yml` - PostgreSQL setup
 
 ## Prerequisites
 
@@ -58,9 +58,16 @@ npm run dev
 
 ## Current Status
 
-- Base Spring Boot project is set up
-- `User` entity implemented with unique email constraint
-- `Skill` entity implemented
-- `User` <-> `Skill` relation implemented through `user_skills` join table
-- Frontend Vite template is initialized
+- Spring Boot and React templates are set up
+- Entities: `User`, `Skill`, `Job`
+- Relations: `user_skills` and `job_skills` (`requiredSkills`)
+- `User.email` is unique
+
+## Data Model
+
+- `users` (`id`, `email`, `password_hash`)
+- `skills` (`id`, `name`)
+- `jobs` (`id`, `title`, `company`, `description`)
+- `user_skills` links users to their skills (`user_id`, `skill_id`)
+- `job_skills` links jobs to required skills (`job_id`, `skill_id`)
 
