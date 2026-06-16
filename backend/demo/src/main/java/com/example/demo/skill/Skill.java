@@ -23,11 +23,13 @@ import java.util.Set;
 )
 public class Skill {
 
+	private static final int NAME_MAX_LENGTH = 80;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, length = 80)
+	@Column(nullable = false, length = NAME_MAX_LENGTH)
 	private String name;
 
 	@ManyToMany(mappedBy = "skills")

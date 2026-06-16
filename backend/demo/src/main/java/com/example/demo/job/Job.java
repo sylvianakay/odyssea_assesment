@@ -18,17 +18,21 @@ import java.util.Set;
 @Table(name = "jobs")
 public class Job {
 
+	private static final int TITLE_MAX_LENGTH = 150;
+	private static final int COMPANY_MAX_LENGTH = 120;
+	private static final int DESCRIPTION_MAX_LENGTH = 2000;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, length = 150)
+	@Column(nullable = false, length = TITLE_MAX_LENGTH)
 	private String title;
 
-	@Column(nullable = false, length = 120)
+	@Column(nullable = false, length = COMPANY_MAX_LENGTH)
 	private String company;
 
-	@Column(nullable = false, length = 2000)
+	@Column(nullable = false, length = DESCRIPTION_MAX_LENGTH)
 	private String description;
 
 	@ManyToMany

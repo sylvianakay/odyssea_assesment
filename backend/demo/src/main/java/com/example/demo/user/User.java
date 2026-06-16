@@ -24,14 +24,17 @@ import java.util.Set;
 )
 public class User {
 
+	private static final int EMAIL_MAX_LENGTH = 120;
+	private static final int PASSWORD_HASH_MAX_LENGTH = 255;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, length = 120)
+	@Column(nullable = false, length = EMAIL_MAX_LENGTH)
 	private String email;
 
-	@Column(name = "password_hash", nullable = false, length = 255)
+	@Column(name = "password_hash", nullable = false, length = PASSWORD_HASH_MAX_LENGTH)
 	private String passwordHash;
 
 	@ManyToMany
