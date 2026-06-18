@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Backend Java Developer",
+    "company": "Odyssea Tech",
+    "description": "Build and maintain Spring Boot APIs and integrations.",
+    "requiredSkills": ["java", "spring boot", "sql"]
+  },
+  {
+    "title": "Frontend React Developer",
+    "company": "Odyssea Tech",
+    "description": "Develop responsive React interfaces and API integrations.",
+    "requiredSkills": ["react", "typescript", "css"]
+  },
+  {
+    "title": "Data Analyst",
+    "company": "Insight Labs",
+    "description": "Create reports and dashboards from operational data.",
+    "requiredSkills": ["sql", "python", "excel"]
+  },
+  {
+    "title": "DevOps Engineer",
+    "company": "CloudOps Ltd",
+    "description": "Support CI/CD pipelines and cloud deployments.",
+    "requiredSkills": ["docker", "kubernetes", "linux"]
+  },
+  {
+    "title": "Full Stack Engineer",
+    "company": "Startup Hub",
+    "description": "Deliver end-to-end features across backend and frontend.",
+    "requiredSkills": ["java", "react", "postgresql"]
+  },
+  {
+    "title": "QA Automation Engineer",
+    "company": "Quality First",
+    "description": "Implement automated tests for web and API layers.",
+    "requiredSkills": ["java", "selenium", "api testing"]
+  }
+]
