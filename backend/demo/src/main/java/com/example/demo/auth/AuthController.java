@@ -2,6 +2,7 @@ package com.example.demo.auth;
 
 import com.example.demo.auth.dto.LoginRequest;
 import com.example.demo.auth.dto.AuthResponse;
+import com.example.demo.auth.dto.MessageResponse;
 import com.example.demo.auth.dto.RegisterRequest;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,9 +24,9 @@ public class AuthController {
 
 	@PostMapping("/register")
 	@ResponseStatus(HttpStatus.CREATED)
-	public String register(@Valid @RequestBody RegisterRequest request) {
+	public MessageResponse register(@Valid @RequestBody RegisterRequest request) {
 		authService.register(request);
-		return "User registered successfully.";
+		return new MessageResponse("User registered successfully.");
 	}
 
 	@PostMapping("/login")
