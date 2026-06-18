@@ -11,7 +11,6 @@ import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -56,17 +55,8 @@ public class UserSkillService {
 	}
 
 	private List<String> normalizeSkills(List<String> rawSkills) {
-		if (rawSkills == null) {
-			return List.of();
-		}
-
 		// normalizing skills once so storage and matching are case-insensitive and consistent.
-		return rawSkills.stream()
-				.filter(skill -> skill != null)
-				.map(skill -> skill.trim().toLowerCase(Locale.ROOT))
-				.filter(skill -> !skill.isBlank())
-				.distinct()
-				.toList();
+		return SkillNameNormalizer.normalizeAll(rawSkills);
 	}
 
 	private Set<Skill> resolveSkills(List<String> normalizedSkills) {
