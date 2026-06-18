@@ -74,7 +74,8 @@ public class UserSkillService {
 			return new LinkedHashSet<>();
 		}
 
-		List<Skill> existingSkills = skillRepository.findByNameIn(normalizedSkills);
+		Set<String> normalizedSkillSet = new LinkedHashSet<>(normalizedSkills);
+		List<Skill> existingSkills = skillRepository.findAllByNameIn(normalizedSkillSet);
 		Map<String, Skill> existingByName = new LinkedHashMap<>();
 		for (Skill existingSkill : existingSkills) {
 			existingByName.put(existingSkill.getName(), existingSkill);
