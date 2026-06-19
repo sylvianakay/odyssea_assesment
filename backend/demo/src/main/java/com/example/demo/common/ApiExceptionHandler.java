@@ -1,6 +1,7 @@
 package com.example.demo.common;
 
 import com.example.demo.auth.EmailAlreadyExistsException;
+import com.example.demo.auth.AuthenticatedUserNotFoundException;
 import com.example.demo.auth.InvalidCredentialsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -39,6 +40,14 @@ public class ApiExceptionHandler {
 	@ExceptionHandler(InvalidCredentialsException.class)
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	public Map<String, String> handleInvalidCredentialsException(InvalidCredentialsException ex) {
+		Map<String, String> error = new LinkedHashMap<>();
+		error.put("message", ex.getMessage());
+		return error;
+	}
+
+	@ExceptionHandler(AuthenticatedUserNotFoundException.class)
+	@ResponseStatus(HttpStatus.UNAUTHORIZED)
+	public Map<String, String> handleAuthenticatedUserNotFoundException(AuthenticatedUserNotFoundException ex) {
 		Map<String, String> error = new LinkedHashMap<>();
 		error.put("message", ex.getMessage());
 		return error;

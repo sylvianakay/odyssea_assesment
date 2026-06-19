@@ -1,6 +1,6 @@
 package com.example.demo.job;
 
-import com.example.demo.auth.InvalidCredentialsException;
+import com.example.demo.auth.AuthenticatedUserNotFoundException;
 import com.example.demo.job.dto.JobMatchResponse;
 import com.example.demo.skill.SkillNameNormalizer;
 import com.example.demo.user.User;
@@ -26,7 +26,7 @@ public class JobMatchService {
 	@Transactional(readOnly = true)
 	public List<JobMatchResponse> getMatchesForUser(String email) {
 		User user = userRepository.findByEmail(email)
-				.orElseThrow(() -> new InvalidCredentialsException("Authenticated user not found."));
+				.orElseThrow(() -> new AuthenticatedUserNotFoundException("Authenticated user not found."));
 
 		Set<String> userSkills = user.getSkills().stream()
 				.map(skill -> SkillNameNormalizer.normalize(skill.getName()))

@@ -1,6 +1,6 @@
 package com.example.demo.skill;
 
-import com.example.demo.auth.InvalidCredentialsException;
+import com.example.demo.auth.AuthenticatedUserNotFoundException;
 import com.example.demo.user.User;
 import com.example.demo.user.UserRepository;
 import org.springframework.stereotype.Service;
@@ -51,7 +51,7 @@ public class UserSkillService {
 
 	private User findUserByEmail(String email) {
 		return userRepository.findByEmail(email)
-				.orElseThrow(() -> new InvalidCredentialsException("Authenticated user not found."));
+				.orElseThrow(() -> new AuthenticatedUserNotFoundException("Authenticated user not found."));
 	}
 
 	private List<String> normalizeSkills(List<String> rawSkills) {
