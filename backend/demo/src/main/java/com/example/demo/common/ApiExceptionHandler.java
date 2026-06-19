@@ -19,9 +19,7 @@ public class ApiExceptionHandler {
 	@ExceptionHandler(EmailAlreadyExistsException.class)
 	@ResponseStatus(HttpStatus.CONFLICT)
 	public Map<String, String> handleEmailAlreadyExistsException(EmailAlreadyExistsException ex) {
-		Map<String, String> error = new LinkedHashMap<>();
-		error.put("message", ex.getMessage());
-		return error;
+		return errorMessage(ex.getMessage());
 	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
@@ -40,16 +38,18 @@ public class ApiExceptionHandler {
 	@ExceptionHandler(InvalidCredentialsException.class)
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	public Map<String, String> handleInvalidCredentialsException(InvalidCredentialsException ex) {
-		Map<String, String> error = new LinkedHashMap<>();
-		error.put("message", ex.getMessage());
-		return error;
+		return errorMessage(ex.getMessage());
 	}
 
 	@ExceptionHandler(AuthenticatedUserNotFoundException.class)
 	@ResponseStatus(HttpStatus.UNAUTHORIZED)
 	public Map<String, String> handleAuthenticatedUserNotFoundException(AuthenticatedUserNotFoundException ex) {
+		return errorMessage(ex.getMessage());
+	}
+
+	private Map<String, String> errorMessage(String message) {
 		Map<String, String> error = new LinkedHashMap<>();
-		error.put("message", ex.getMessage());
+		error.put("message", message);
 		return error;
 	}
 }

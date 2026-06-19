@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -36,7 +37,7 @@ public class JobMatchService {
 			return List.of();
 		}
 
-		return jobRepository.findAll().stream()
+		return jobRepository.findAllMatchingAnySkill(userSkills).stream()
 				.map(job -> {
 					List<String> matchedSkills = job.getRequiredSkills().stream()
 							.map(skill -> SkillNameNormalizer.normalize(skill.getName()))
@@ -46,18 +47,18 @@ public class JobMatchService {
 							.toList();
 
 					if (matchedSkills.isEmpty()) {
-						return null;
+						return Optional.<JobMatchResponse>empty();
 					}
 
-					return new JobMatchResponse(
+					return Optional.of(new JobMatchResponse(
 							job.getId(),
 							job.getTitle(),
 							job.getCompany(),
 							job.getDescription(),
 							matchedSkills
-					);
+					));
 				})
-				.filter(response -> response != null)
+				.flatMap(Optional::stream)
 				.toList();
 	}
 }
