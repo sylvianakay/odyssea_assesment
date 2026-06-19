@@ -53,7 +53,6 @@ Matching rule:
 - Single user role (no admin role needed for this exercise).
 - Jobs are read-only and come from static `jobs.json`.
 - Skill list update replaces the full list (`PUT` semantics).
-- Local/dev setup is enough (no production deployment requirements).
 
 ## Trade-Offs
 
@@ -97,7 +96,7 @@ Configured values:
 - Database: `jobmatcher`
 - User: `postgres`
 - Password: `postgres`
-- Port: `5432`
+- Port: `5433`
 
 ### 2) Run backend
 
@@ -139,6 +138,6 @@ npm run build
 ## Notes for Evaluator
 
 - CORS is explicitly configured for frontend origin `http://localhost:5173`.
-- Database connection is configured for PostgreSQL on `localhost:5432`.
+- Database connection is configured for PostgreSQL on `localhost:5433`.
 - Job seed data is loaded once (idempotent) when jobs table is empty.
 
