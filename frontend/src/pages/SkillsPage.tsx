@@ -4,8 +4,6 @@ import client from '../api/client.ts'
 import { getApiErrorMessage } from '../api/getApiErrorMessage.ts'
 import { useAuth } from '../auth/AuthContext.tsx'
 
-const SKILLS_INPUT_STORAGE_KEY = 'skills_input_draft'
-
 type JobMatch = {
   id: number
   title: string
@@ -17,10 +15,21 @@ type JobMatch = {
 export default function SkillsPage() {
   const { logout } = useAuth()
   const navigate = useNavigate()
-  const [skillsInput, setSkillsInput] = useState(() => localStorage.getItem(SKILLS_INPUT_STORAGE_KEY) ?? '')
+  const [skillsInput, setSkillsInput] = useState('')
+  const [savedSkills, setSavedSkills] = useState<string[]>([])
   const [matches, setMatches] = useState<JobMatch[]>([])
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
+
+  const fetchSavedSkills = async () => {
+    setError('')
+    try {
+      const response = await client.get<{ skills: string[] }>('/api/users/me/skills')
+      setSavedSkills(response.data.skills ?? [])
+    } catch (requestError) {
+      setError(getApiErrorMessage(requestError, 'Could not load saved skills.'))
+    }
+  }
 
   const fetchMatches = async () => {
     setError('')
@@ -33,16 +42,9 @@ export default function SkillsPage() {
   }
 
   useEffect(() => {
+    void fetchSavedSkills()
     void fetchMatches()
   }, [])
-
-  useEffect(() => {
-    if (skillsInput.trim() === '') {
-      localStorage.removeItem(SKILLS_INPUT_STORAGE_KEY)
-      return
-    }
-    localStorage.setItem(SKILLS_INPUT_STORAGE_KEY, skillsInput)
-  }, [skillsInput])
 
   const saveSkills = async () => {
     setMessage('')
@@ -53,7 +55,9 @@ export default function SkillsPage() {
         .map((value) => value.trim())
         .filter(Boolean)
       await client.put('/api/users/me/skills', { skills: parsed })
+      setSavedSkills(parsed)
       await fetchMatches()
+      setSkillsInput('')
       setMessage('Skills saved.')
     } catch (requestError) {
       setError(getApiErrorMessage(requestError, 'Could not save skills.'))
@@ -95,6 +99,21 @@ export default function SkillsPage() {
 
         {message && <p className="success">{message}</p>}
         {error && <p className="error">{error}</p>}
+
+        <section className="section-block">
+          <h2>Saved skills</h2>
+          {savedSkills.length === 0 ? (
+            <p className="hint">No saved skills yet.</p>
+          ) : (
+            <div className="chips">
+              {savedSkills.map((skill) => (
+                <span key={skill} className="chip">
+                  {skill}
+                </span>
+              ))}
+            </div>
+          )}
+        </section>
 
         <section className="section-block">
           <h2>Job listings</h2>

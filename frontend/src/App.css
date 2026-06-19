@@ -1,51 +1,53 @@
 .page {
   min-height: 100svh;
   display: grid;
-  place-items: start center;
-  padding: 28px 16px;
+  justify-items: stretch;
+  align-items: start;
+  padding: 0;
   box-sizing: border-box;
-  background: #07090d;
+  background: #f8fafc;
 }
 
 .card {
-  width: min(920px, 100%);
-  background: #07090d;
+  width: 100%;
+  background: #ffffff;
   border: none;
-  border-radius: 12px;
-  padding: 22px;
+  border-radius: 0;
+  padding: 24px;
   box-sizing: border-box;
   text-align: left;
   display: grid;
   gap: 14px;
+  align-content: start;
 }
 
 .card h1 {
   margin: 0;
   font-size: 28px;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .card h2 {
   margin: 0 0 8px;
   font-size: 20px;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .card h3 {
   margin: 0 0 4px;
   font-size: 18px;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .hint {
   margin: 0;
-  color: #9ca3af;
+  color: #475569;
   line-height: 1.45;
 }
 
 .hint a,
 .hint a:visited {
-  color: #cbd5e1;
+  color: #334155;
 }
 
 .form {
@@ -62,23 +64,23 @@ button {
 input {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid #2a3240;
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
   padding: 11px 12px;
-  background: #0f1219;
-  color: #f8fafc;
+  background: #ffffff;
+  color: #0f172a;
 }
 
 input::placeholder {
-  color: #9ca3af;
+  color: #64748b;
 }
 
 button {
-  border: 1px solid #f3f4f6;
+  border: 1px solid #0f172a;
   border-radius: 8px;
   padding: 11px 12px;
-  background: #f3f4f6;
-  color: #111827;
+  background: #0f172a;
+  color: #ffffff;
   font-weight: 600;
   cursor: pointer;
 }
@@ -117,9 +119,9 @@ button:hover {
 }
 
 .match-card {
-  border: 1px solid #2a3240;
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
-  background: #0f1219;
+  background: #f8fafc;
   padding: 12px;
   display: grid;
   gap: 8px;
@@ -136,9 +138,9 @@ button:hover {
 }
 
 .chip {
-  border: 1px solid #2a3240;
-  background: #0b1220;
-  color: #dbeafe;
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  color: #1e3a8a;
   border-radius: 999px;
   padding: 4px 10px;
   font-size: 13px;
@@ -146,33 +148,38 @@ button:hover {
 
 .success {
   margin: 8px 0 0;
-  color: #86efac;
+  color: #166534;
 }
 
 .error {
   margin: 8px 0 0;
-  color: #fca5a5;
+  color: #b91c1c;
 }
 
 pre {
   margin: 0;
-  border: 1px solid #2a3240;
+  border: 1px solid #cbd5e1;
   border-radius: 8px;
-  background: #0f1219;
-  color: #e5e7eb;
+  background: #f8fafc;
+  color: #0f172a;
   padding: 10px;
   overflow: auto;
 }
 
 .login-page,
 .register-page {
-  background: transparent;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: #f8fafc;
 }
 
 .login-card {
-  max-width: 520px;
-  background: transparent;
-  border-radius: 10px;
+  width: min(520px, 100%);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
 }
 
 .login-header {
@@ -186,15 +193,15 @@ pre {
 .login-title {
   margin: 0;
   font-size: 34px;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .login-subtitle {
-  color: #9ca3af;
+  color: #475569;
 }
 
 .login-subtitle a {
-  color: #cbd5e1;
+  color: #334155;
 }
 
 .login-form {
@@ -204,21 +211,21 @@ pre {
 .login-label {
   font-size: 14px;
   font-weight: 600;
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 .login-page .error,
 .register-page .error {
-  color: #fca5a5;
+  color: #b91c1c;
 }
 
 .register-page .success {
-  color: #86efac;
+  color: #166534;
 }
 
 @media (max-width: 640px) {
   .card {
-    padding: 18px;
+    padding: 16px;
     gap: 12px;
   }
 
