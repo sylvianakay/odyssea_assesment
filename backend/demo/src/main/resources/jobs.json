@@ -1,13 +1,13 @@
 [
   {
     "title": "Backend Java Developer",
-    "company": "Odyssea Tech",
+    "company": "Odyssea",
     "description": "Build and maintain Spring Boot APIs and integrations.",
     "requiredSkills": ["java", "spring boot", "sql"]
   },
   {
     "title": "Frontend React Developer",
-    "company": "Odyssea Tech",
+    "company": "Odyssea",
     "description": "Develop responsive React interfaces and API integrations.",
     "requiredSkills": ["react", "typescript", "css"]
   },
