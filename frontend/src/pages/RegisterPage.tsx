@@ -29,20 +29,30 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="page">
-      <section className="card">
-        <h1>Create account</h1>
-        <p className="hint">Use your email and password to register.</p>
+    <main className="page register-page">
+      <section className="card login-card">
+        <div className="login-header">
+          <h1 className="login-title">Create account</h1>
+          <p className="hint login-subtitle">Use your email and password to register.</p>
+        </div>
 
-        <form className="form" onSubmit={onSubmit}>
+        <form className="form login-form" onSubmit={onSubmit}>
+          <label className="login-label" htmlFor="register-email">
+            Email
+          </label>
           <input
+            id="register-email"
             type="email"
-            placeholder="Email"
+            placeholder="m@example.com"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
           />
+          <label className="login-label" htmlFor="register-password">
+            Password
+          </label>
           <input
+            id="register-password"
             type="password"
             placeholder="Password"
             value={password}

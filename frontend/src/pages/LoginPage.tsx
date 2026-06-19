@@ -29,20 +29,32 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="page">
-      <section className="card">
-        <h1>Welcome back</h1>
-        <p className="hint">Login to manage your skills and view matches.</p>
+    <main className="page login-page">
+      <section className="card login-card">
+        <div className="login-header">
+          <h1 className="login-title">Welcome back</h1>
+          <p className="hint login-subtitle">
+            Don&apos;t have an account? <Link to="/register">Sign up</Link>
+          </p>
+        </div>
 
-        <form className="form" onSubmit={onSubmit}>
+        <form className="form login-form" onSubmit={onSubmit}>
+          <label className="login-label" htmlFor="login-email">
+            Email
+          </label>
           <input
+            id="login-email"
             type="email"
-            placeholder="Email"
+            placeholder="m@example.com"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
             required
           />
+          <label className="login-label" htmlFor="login-password">
+            Password
+          </label>
           <input
+            id="login-password"
             type="password"
             placeholder="Password"
             value={password}
@@ -53,10 +65,6 @@ export default function LoginPage() {
         </form>
 
         {error && <p className="error">{error}</p>}
-
-        <p className="hint">
-          No account yet? <Link to="/register">Register</Link>
-        </p>
       </section>
     </main>
   )

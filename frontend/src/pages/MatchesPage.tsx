@@ -52,10 +52,6 @@ export default function MatchesPage() {
           <span className="active">Matches</span>
         </div>
 
-        <button type="button" onClick={fetchMatches}>
-          Refresh matches
-        </button>
-
         {error && <p className="error">{error}</p>}
 
         <pre>{JSON.stringify(matches, null, 2)}</pre>

@@ -7,7 +7,7 @@ import { useAuth } from '../auth/AuthContext.tsx'
 export default function SkillsPage() {
   const { logout } = useAuth()
   const navigate = useNavigate()
-  const [skillsInput, setSkillsInput] = useState('java, sql')
+  const [skillsInput, setSkillsInput] = useState('')
   const [skills, setSkills] = useState<string[]>([])
   const [message, setMessage] = useState('')
   const [error, setError] = useState('')
@@ -64,7 +64,7 @@ export default function SkillsPage() {
 
         <input
           type="text"
-          placeholder="java, sql, spring"
+          placeholder="e.g. java, sql"
           value={skillsInput}
           onChange={(event) => setSkillsInput(event.target.value)}
         />
@@ -72,9 +72,6 @@ export default function SkillsPage() {
         <div className="row">
           <button type="button" onClick={saveSkills}>
             Save skills
-          </button>
-          <button type="button" onClick={fetchSkills}>
-            Refresh
           </button>
         </div>
 
