@@ -1,14 +1,14 @@
 .page {
   min-height: 100svh;
   display: grid;
-  place-items: center;
+  place-items: start center;
   padding: 28px 16px;
   box-sizing: border-box;
   background: #07090d;
 }
 
 .card {
-  width: min(560px, 100%);
+  width: min(920px, 100%);
   background: #07090d;
   border: none;
   border-radius: 12px;
@@ -22,6 +22,18 @@
 .card h1 {
   margin: 0;
   font-size: 28px;
+  color: #f8fafc;
+}
+
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #f8fafc;
+}
+
+.card h3 {
+  margin: 0 0 4px;
+  font-size: 18px;
   color: #f8fafc;
 }
 
@@ -87,26 +99,49 @@ button:hover {
   margin: 0;
 }
 
-.links {
-  display: flex;
-  gap: 12px;
-  margin: 0 0 4px;
-}
-
-.links a {
-  color: #9ca3af;
-}
-
-.active {
-  color: #f8fafc;
-  font-weight: 700;
-}
-
 .row {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   margin: 2px 0 0;
+}
+
+.section-block {
+  display: grid;
+  gap: 10px;
+}
+
+.match-list {
+  display: grid;
+  gap: 10px;
+}
+
+.match-card {
+  border: 1px solid #2a3240;
+  border-radius: 8px;
+  background: #0f1219;
+  padding: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.match-card p {
+  margin: 0;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  border: 1px solid #2a3240;
+  background: #0b1220;
+  color: #dbeafe;
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-size: 13px;
 }
 
 .success {
